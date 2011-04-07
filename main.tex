@@ -1,0 +1,81 @@
+%
+%        Document : Megabolt : Cross Platform Download Manager.Project report
+%        Author   : Arjun S R
+%        Date     : Thu Apr  7 18:15:04 IST 2011
+
+\documentclass[pdftex,12pt,a4paper,pdfencoding=unicode]{article}
+\usepackage[pdftex]{graphicx}
+%\usepackage[dvips, bookmarks, colorlinks=false,pdftitle={Megabolt},pdfauthor={Arjun S R},pdfsubject={Project Report},pdfkeywords={PDF, LaTeX, hyperlinks, hyperref}]{hyperref}
+
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+\usepackage{amstext}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{fixltx2e}
+\usepackage{color}
+\usepackage{parskip}
+\usepackage{bookmark}
+\usepackage{cite}
+\usepackage[a4paper]{geometry}
+\usepackage{float}
+\usepackage{rotfloat}
+\usepackage[T1]{fontenc}
+
+% should uncomment line below only if the document is to be compiled to times new roman font
+%\usepackge{times}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+\newcommand{\HRule}{\rule {\linewidth}{0.5mm}}
+\newcommand{\CRule}{\rule {\linewidth}{0.78975mm}}
+
+\setcounter{tocdepth}{4}
+\setlength{\parindent}{1cm}
+\setcounter{table}{0}
+
+\begin{document}
+\input{title.tex}
+
+\hypersetup{
+  bookmarks=false,          % show bookmarks bar?
+  unicode=true,             % non-Latin characters in Acrobats bookmarks
+  pdftoolbar=true,          % show Acrobats toolbar?
+  pdfmenubar=true,          % show Acrobats menu?
+  pdffitwindow=true,        % window fit to page when opened
+  pdfstartview={FitH},      % fits the width of the page to the window
+  pdftitle={Megabolt},      % title
+  pdfauthor={Arjun.S.R},    % author
+  pdfsubject={Megabolt:A Cross-Platform Download Manager},   % subject of the document
+  pdfcreator={Arjun.S.R},   % creator of the document
+  pdfproducer={Arjun S.R}, % producer of the document
+  pdfkeywords={megabolt} {free} {download manger}{cross-platform}, % list of keywords
+  pdfnewwindow=true,      % links in new window
+  colorlinks=true,       % false: boxed links; true: colored links
+  linkcolor=red,         % color of internal links
+  citecolor=green,       % color of links to bibliography
+  filecolor=magenta,      % color of file links
+  urlcolor=cyan         % color of external links
+ }
+
+\begin{onehalfspace}
+  \section*{}
+  \thispagestyle{empty}
+  \begin{center}
+   {\large \bf DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\
+   {\large \bf COLLEGE OF ENGINEERING}\\
+   {\large \bf TRIVANDRUM}\\
+   \vspace{2cm}
+   \includegraphics{pic/cetemblem.jpg}
+     {\large \bf CERTIFICATE}\\
+ \end{center}
+
+\newpage
+
+\input{cert.tex}
+\newpage
+This is a new page
+\end{onehalfspace}
+\end{document}
