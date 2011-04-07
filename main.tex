@@ -58,24 +58,126 @@
   citecolor=green,       % color of links to bibliography
   filecolor=magenta,      % color of file links
   urlcolor=cyan         % color of external links
- }
+}
+
 
 \begin{onehalfspace}
-  \section*{}
-  \thispagestyle{empty}
-  \begin{center}
-   {\large \bf DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\
-   {\large \bf COLLEGE OF ENGINEERING}\\
-   {\large \bf TRIVANDRUM}\\
-   \vspace{2cm}
-   \includegraphics{pic/cetemblem.jpg}
-     {\large \bf CERTIFICATE}\\
- \end{center}
+\section*{}
+\thispagestyle{empty}
+\begin{center}
+  {\large \bf DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\
+  {\small \bf COLLEGE OF ENGINEERING}\\
+  {\small \bf TRIVANDRUM}\\
+  {\small 2011}\\
+  \vspace{5mm}
+  \includegraphics[scale=0.75]{pic/cetemblem.jpg}\\
+    {\large \bf CERTIFICATE}\\[0.75cm]
+\end{center}
+{\it This is to certify that this project entitled {\textsc MEGABOLT - A CROSS PLATFORM DOWNLOAD MANAGER} 
+is a bonafide record of the project done by {\bf \emph{Arjun.S.R, Deepak Kumar.N.D, Joji Antony, Sreekanth B,}} 
+and {\bf \emph{Varun V.V}} under our guidance \& supervision towards the partial fulfillment of the requirements 
+for the award of the Degree of Bachelor of Technology in Computer Science and Engineering of the University of 
+Kerala during the year 2010-2011.}
 
+\begin{minipage}{0.4\textwidth}
+  \begin{flushleft}
+    {
+      \small \emph{Project Guide}\\
+               {\bf Mrs.Deepthi V R,}\\
+               Lecturer,\\
+               Dept of CS \& Engg,\\
+               College of Engineering,\\Trivandrum
+    }
+  \end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+  \begin{flushright}
+    {
+      \small
+      \emph{Project Coordinator}\\
+         {\bf Prof.Shreelekshmi R,}\\
+         Head Of the Department\\
+         Dept of CS \& Engg,\\
+         College of Engineering,\\Trivandrum
+    }
+  \end{flushright}
+\end{minipage}
+\vfill
+\newpage
+\section*{}
+\thispagestyle{empty}
+\begin{center}
+  {\bf ACKNOWLEDGEMENT}
+\end{center}
+We wish to place on record our deep sense of gratitude to our project guide, {\bf Mrs.Deepthi V R}, Lecturer, Department
+of Computer Science \& Engineering, College of Engineering, Trivandrum, for most valuable help and support in carrying out this
+preliminary project work and also for her concern shown during intricate situations.\\
+
+\indent We hereby express our sincere thanks to {\bf Mrs. Shreelekshmi R}, Head of the Department, Department of Computer 
+Science \& Engineering, College of Engineering, Trivandrum for all the necessary help extended during the course of the work.\\
+
+\indent We would also like to extend our sincere thanks to all staff members of the Department of Computer Science \& 
+Engineering, College of Engineering, Trivandrum whose help has led to the completion of this report.\\[1cm]
+\begin{minipage}{0.4\textwidth}
+  \begin{flushleft}
+    {
+    }
+  \end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+  \begin{flushright}
+    {
+      \emph{Arjun.S.R\\Deepak Kumar.N.D\\ Joji Antony\\ Sreekanth B\\ Varun V.V\\}
+    }
+  \end{flushright}
+\end{minipage}
+\vfill
 \newpage
 
-\input{cert.tex}
+\section*{\Large Abstract}
+\thispagestyle{plain}
+               Megabolt is cross-platform download manger written in Qt Framework with many interesting features
+                capable of professional use. Megabolt uses threaded downloaded on all the protocols it supports.
+                The software is released in BSD licensed.\\
+
+                Our project was mainly intended to write portable code that runs light-weight processes on various
+                platforms that Qt supports and provides a simple front-end to initiate, configure and use the software.
+                Extra care was given in making the software configurable. The data structures are generic that supports
+                almost all file transfer protocols available right now in the industry.
+
+
 \newpage
-This is a new page
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\listoffigures
+\thispagestyle{empty}
+\newpage
+\pagestyle{fancy}
+\fancyhead{R}{\leftmark}
+\fancyhead{L}{\rightmark}
+\fancyfoot{C}{\thepage}
+\section{Introduction}
+\setcounter{page}{1}
+At this point of the century, internet is the largest source of data and file. When data holds something that is useful; the
+data becomes information. Most of the worlds population uses internet for searching information and downloading files etc.
+And there arises the need of a well architectured, designed and friendly download manager. Computer networks as designed,
+the data is sent in the form of packets through various intervening routers and proxies.
+
+A download manager is a software that are usually tailored to automate downloads of various files hosted in the internet. The
+protocols with which the files may be shared may be HTTP, HTTPS, FTP, SFTP, metalink or even cookie based connections. So it means that
+we need a download manager that extends its service to operate over the above protocols and function efficiently. So we went on with
+the idea of making one. But, after that we realized that the coding phase is going to be hectic. We, the developers of the software
+wanted the software to be free in all its means because that is the only way to provide something best to the society to solve a common
+problem. A more close look at the networking API of the modern system made it clear that the thread management is different for different
+operating systems. Moreover the TCP/IP kernel stack is different from each other with incompatible extension and methods.
+
+We needed a single code base that can be used to run in all the environments. Such thoughts made us to think of even using scripting
+languages like python or perl for the software. Later, we got in touch with Nokia's Qt. Qt is widely used in many projects. Qt is a
+extended C++ language. It has a middle interfacing template layer that interfaces all the devices and jobs that are very abstract and
+generic; which gives the developer the freedom to use or even re-implement the functions to adapt to its requirements in the software.
+Qt code when compiled the host operating system passes some of its properties and environment variable that the Qt uses to make the
+code work on its platform. Our code runs straightaway in platforms like GNU/Linux, M S Windows and Apple MAC OSX kernels (more kernels 
+to be experimented). 
 \end{onehalfspace}
 \end{document}
