@@ -1,0 +1,44 @@
+%
+% Din A4 Laengen  ( 210 mm * 297 mm )
+%
+\newlength{\dinwidth}
+\newlength{\dinheight}
+\newlength{\dinmargin}
+\newlength{\aussenrand}
+\newlength{\innenrand}
+\newlength{\randoben}
+\newlength{\randunten}
+%
+\aussenrand2cm      %physikalischer Aussenrand
+\innenrand3cm       %physikalischer Innenrand
+\randoben2.5cm      %physikalischer Abstand von oben
+\randunten2.5cm     %physikalischer Abstand von unten
+%
+\setlength{\dinwidth}{21.0cm}
+\setlength{\dinheight}{29.7cm}
+%
+\textwidth\dinwidth
+\addtolength{\textwidth}{-\aussenrand}
+\addtolength{\textwidth}{-\innenrand}
+\setlength{\dinmargin}{\dinwidth}
+\addtolength{\dinmargin}{-\textwidth}
+\setlength{\dinmargin}{0.5\dinmargin}
+\oddsidemargin-1in
+\evensidemargin-1in
+\addtolength{\oddsidemargin}{\innenrand}
+\addtolength{\evensidemargin}{\aussenrand}
+\setlength{\marginparwidth}{0.9\dinmargin}
+\marginparsep 8pt \marginparpush 5pt
+%
+\textheight\dinheight
+\topmargin -1in
+%
+\headheight 12pt
+\headsep 24pt 
+\footskip 24pt
+\addtolength{\topmargin}{\randoben}
+\addtolength{\textheight}{-\randoben}
+\addtolength{\textheight}{-\randunten}
+\addtolength{\textheight}{-\headheight}
+\addtolength{\textheight}{-\headsep}
+
