@@ -1,0 +1,16 @@
+This is the complete documentation of my final year project Megabolt.
+It is free, cross platform, accelerated, schedulable, configurable
+and friendly download manager.
+
+Its completely written in Qt. And it features
+* Threaded download
+* Schedulable downloads
+* Friendly and light-weight software
+* Support Cache proxy
+* Automated login downloads
+
+Future Plans
+* Extend protocol support to FTP, HTTPS, metalink . etc 
+* Session - based or cookie enabled downloads
+* Browser plugins to make the download stuff more easy
+
