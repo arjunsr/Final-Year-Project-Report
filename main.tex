@@ -184,28 +184,59 @@
       \subsection{Basic Operation of a Download Manager}
       Download manager functions can be split in to various layers:
       \begin{description}
-        \item[Front End :] The download manager has a very lightweight, easy and simple front end. The main purpose of the front end is to
-          insert \emph{download items} or \emph{uri's} to the object to be downloaded. Helps in entering the scheduling information.
-          Front provides the service to configure the internal parameters of the download manager. Special effort was given in making the
-          user interface simple because well verbose and crowded sophisticated can ward off naive users.
+      \item[Front End :] The download manager has a very lightweight, easy and simple front end. The main purpose of the front end is to
+        insert \emph{download items} or \emph{uri's} to the object to be downloaded. Helps in entering the scheduling information.
+        Front provides the service to configure the internal parameters of the download manager. Special effort was given in making the
+        user interface simple because well verbose and crowded sophisticated can ward off naive users.
 
-          There are cases in which the protocol demands user or login credentials to login and download, here the download managers front
-          helps in getting it from the user and automating it. Front ends provides a search bar that helps the user to search his/her
-          download with the name in the list. All the downloads are put in a list, based on the status the object are created else its
-          just read in to fill the list.
+        There are cases in which the protocol demands user or login credentials to login and download, here the download managers front
+        helps in getting it from the user and automating it. Front ends provides a search bar that helps the user to search his/her
+        download with the name in the list. All the downloads are put in a list, based on the status the object are created else its
+        just read in to fill the list.
 
-        \item[Manager :] Manager is the heart of the download manager. Manager by virtue of its name has a lot of responsibilities. The
-          manager reads the list of download \emph{uri's} and fills the list. If the download is not finished, it initiates the download
-          objects. Manager check the \emph{maximum number of concurrent downloads} configured and initiates that much number of downloads
-          through the virtual  function \emph{start()}. Manger frequently checks the status and provides feedback through the progress bar
-          regarding the percentage of the download.
+      \item[Manager :] Manager is the heart of the download manager. Manager by virtue of its name has a lot of responsibilities. The
+        manager reads the list of download \emph{uri's} and fills the list. If the download is not finished, it initiates the download
+        objects. Manager check the \emph{maximum number of concurrent downloads} configured and initiates that much number of downloads
+        through the virtual  function \emph{start()}. Manger frequently checks the status and provides feedback through the progress bar
+        regarding the percentage of the download. \emph{Scheduler} plays a very important role in managing the task in the list. Object
+        in the list can have a global scheduler that acts on a whole to the list. But if you feel like doing some scheduling specific
+        to a file a local scheduling is provided to initiate at a particular point of time.
 
-        \item[Back End :] Back end includes the real protocol dependent layer. Each protocol have there own specific details and extra
-          files to be handled. The layers were well designed so that each layer can function independently without much sharing of datas.
-          The interfacing API in the \emph{front end} is generic so that it can act on object of various protocols. The back end deals with
-          connecting to the server with details given from the front end including user credentials, number of connections per download,
-          destination file to write the data, thread status metadata, timing information to implement throttling of the download.
-
+      \item[Back End :] Back end includes the real protocol dependent layer. Each protocol have there own specific details and extra
+        files to be handled. The layers were well designed so that each layer can function independently without much sharing of datas.
+        The interfacing API in the \emph{front end} is generic so that it can act on object of various protocols. The back end deals with
+        connecting to the server with details given from the front end including user credentials, number of connections per download,
+        destination file to write the data, thread status metadata, timing information to implement throttling of the download.
       \end{description}
+
+      \subsection{Project Description}
+      Download manager is a specialized software that is capable of handling downloads given to it transparently in a self-contained
+      way. Download manager identifies the type of the file being downloaded and makes proper destined download directories so that
+      all the files that are downloaded will be well organized as per the media type. Irrespective of where the download manager runs,
+      it has to provide support to download through firewall and proxies. The download manager has following properties:
+      \begin{itemize}
+      \item It is cross platform. Work on popular kernels like GNU/Linux, MS Windows and MAC OSX\ldots. Also on all platforms where Qt runs
+      \item Ability to configure individual download
+      \item Threaded download support
+      \item Extensible code, so its easy to write modules for newer protocols
+      \end{itemize}
+\newpage
+      \section{Field of research}
+      Most of the current download manager just provide a mechanism to download and a simple automation of downloads by allowing batch
+      scripts and cron jobs. Many download managers and download accelerators in the market where studied so as to make our software
+      fool proof and the best in the market.
+
+      \subsection{Background of research}
+      Download managers in the market are generally platform specific. Some may be good in threaded support but may be bad in other feature.
+      So the market really lacked a well generically defined and designed download manager that can be configured in the native OS to run
+      conflict less. Download managers attached to the browser cannot function independently.They need the browser's framework to carryout
+      its function. Download managers like IDM, orbit, axel, aria2c, free download manager, downthemall(addon to firefox) were all studied.
+
+      Internet users first wanted to stream movies and download basic mp3 files. Later after broadband connection they demanded high
+      definition videos. And with 3G they started demanding blu-ray videos, HDTV live stream and so on. So the need to download data 
+      just increases the way the field of networking and multimedia advances.
+
+      
+
 \end{onehalfspace}
 \end{document}
