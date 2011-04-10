@@ -220,7 +220,7 @@
       \item Threaded download support
       \item Extensible code, so its easy to write modules for newer protocols
       \end{itemize}
-\newpage
+      \newpage
       \section{Field of research}
       Most of the current download manager just provide a mechanism to download and a simple automation of downloads by allowing batch
       scripts and cron jobs. Many download managers and download accelerators in the market where studied so as to make our software
@@ -233,10 +233,39 @@
       its function. Download managers like IDM, orbit, axel, aria2c, free download manager, downthemall(addon to firefox) were all studied.
 
       Internet users first wanted to stream movies and download basic mp3 files. Later after broadband connection they demanded high
-      definition videos. And with 3G they started demanding blu-ray videos, HDTV live stream and so on. So the need to download data 
+      definition videos. And with 3G they started demanding blu-ray videos, HDTV live stream and so on. So the need to download data
       just increases the way the field of networking and multimedia advances.
 
-      
+      As we all know the popular operating systems include GNU/Linux, M S Windows, Apple's MAC etc\ldots. In each kernel the internal
+      implementation of the networking application programming interface is entirely different. Though the networking API in linux is
+      compatible with BSD socket interface. There are many internal issues that make it different from each other.
 
+      The graphical user interface library for windows is a part  WIN32 api entirely different from Apple's Cocoa ; which again is totally
+      different from *nix based X Window systems.
+
+      As the OS kernel's differs so does the abstraction for a process in the system as well as the way OS treat its user space threads are
+      usually very specific. M S Windows in its thread and process based syscalls the internal implementations are not much POSIX compliant
+      which makes the task more difficult.
+
+      The way each system handles the file streams are too different. The formatting scheme they follow are confliciting adding to the above
+      problems making it more tougher to think of code portability.
+
+      After making out all the issues that we faced in researching about the download managers in the market we got the idea that we should
+      use a language that is platform independent, efficient, lightweight and very maintainable. Many choices were there like JAVA which
+      will make the working of the code more safer in the JVM and portability was assured inherently. But we wanted more efficiency and
+      increase in the performance. Later thought of using scripting languages like python and perl which would make the code execute on
+      almost all platforms and the lines of code will be considerably less but had to tradeoff efficiency.
+
+      Then we came across the extended grammar form of the language C++ that is called \emph{Qt}. Its a programming language.
+      That is it when compiled produces a binary
+      \begin{itemize}
+        \item That runs on the native operating system without any other interpreter. --efficiency.
+        \item It gives precise control on the thread management facility offered by the system. --portability of threads
+        \item It gives more neat code -- maintainability.
+        \item It gives a intermediate layer that interface various devices, networks of various operating systems.
+          --portability of networking API.
+        \item It gives a intermediate layer that interface various graphical user interface libraries of operating systems
+          to be compiled to the platform. --portability of gui code.
+      \end{itemize}
 \end{onehalfspace}
 \end{document}
