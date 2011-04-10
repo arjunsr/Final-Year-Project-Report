@@ -271,13 +271,13 @@
       Then we came across the extended grammar form of the language C++ that is called \emph{Qt}. Its a programming language.
       That is it when compiled produces a binary
       \begin{enumerate}
-        \item That runs on the native operating system without any other interpreter. --efficiency.
-        \item It gives precise control on the thread management facility offered by the system. --portability of threads
-        \item It gives more neat code -- maintainability.
+        \item That runs on the native operating system without any other interpreter. -efficiency.
+        \item It gives precise control on the thread management facility offered by the system. -portability of threads
+        \item It gives more neat code - maintainability.
         \item It gives a intermediate layer that interface various devices, networks of various operating systems.
-          --portability of networking API.
+          -portability of networking API.
         \item It gives a intermediate layer that interface various graphical user interface libraries of operating systems
-          to be compiled to the platform. --portability of gui code.
+          to be compiled to the platform. -portability of gui code.
       \end{enumerate}
 
       \subsection{Summary of research}
@@ -362,30 +362,86 @@
 
        \subsection{Front end}
        The data structures are generic that aids to write
-       extensible code to add more protocol support. For more details check the Figure: Class hierarchy\ref{fig:hier}
-
+       extensible code to add more protocol support. 
        \begin{figure}[h!]
          \includegraphics[scale=0.50]{pic/hier.png}
          \caption{Class hierarchy \label{fig:hier}}
        \end{figure}
-
-       Above diagram shows the main classes involved in the project. Now next figures shows you the methods and the control flow in the
+       For more details check the Figure : Class hierarchy\ref{fig:hier}
+       Above diagram shows the main classes involved in the project. Now next figure shows you the methods and the control flow in the 
        classes.
 
+       \subsection{Manager}
+       This the core module that  has control over the backend. This modules give a time slice like 200 millisecond and update the status
+       of the individual download object. It functions in a multi-threaded fashion in order to serve \emph{ max concurrent downloads } of
+       objects and to update each one's status. Check figure \ref{fig:methods}
        \begin{figure}[h!]
          \includegraphics[scale=0.90]{pic/methods.png}
          \caption{Member functions of various classes \label{fig:methods}}
        \end{figure}
 
        \subsection{Backend}
-       Only HTTP downloads were implemented in the preliminary phase. The HTTP threads behave according to the following finite state
-       automaton\ref{fig:ts}
 
+       Only HTTP downloads were implemented in the preliminary phase. The HTTP threads behave according to the following finite state
+       automaton\ref{fig:ts}. This module functions in a multi-threaded fashion. The main thread resolves the links to follow it until
+       actual location is obtained. The main thread frames requests as per standard HTTP format. The main thread spawns of mentioned
+       number of worker threads. These worker threads frequently writeback the buffer full of data to the disk based on a timeout.
+       \newpage
        \begin{figure}[h!]
         \includegraphics[scale=0.90]{pic/ts.png}
          \caption{Finite State Automaton of a single thread \label{fig:ts}}
        \end{figure}
 
+       The finite state automaton of the thread is shown above. After the 300 millisecond timeout each thread goes to suspended state.
+       In the suspended state the thread seeks to the range based position in the file and write it data downloaded and updates its thread
+       status information in the metadata file.
+
+       \newpage
+       \section{System Configuration}
+       \subsection{Hardware Configuration}
+       \begin{description}
+         \item[Processor :] Intel Pentium 3 or above
+         \item[RAM :] 256MB or above
+         \item[HDD: ] 40 GB
+       \end{description}
+
+       \subsection{Software Requirements}
+       \begin{description}
+       \item[ Operating system ]: Any (Megabolt is Portable!)
+       \item[ Development Tools]: Qt Creator 4 and Qt Designer
+       \item[Version control] : Git
+       \end{description}
+       \newpage
+       \section{Screen shots}
+       Adding URL \ref{fig:ss2}
+       \begin{figure}[h!]
+         \includegraphics[scale=0.60]{pic/ss2.jpg}
+         \caption{Screenshot \label{fig:ss2}}
+       \end{figure}
+       \newpage
+       \section{Conclusion and Future Works}
+       We intend to increase performance and do more work on this project on various areas.
+       \begin{itemize}
+       \item We intend to study the optimal buffer size that needs to given with the thread by studying the network output through
+         simulation tools like \emph{ dummy network}. By statistical analysis of packet loss rate and bandwidth we intend to deduce an
+         optimal buffer size for the download threads so that in the time slice the buffer wont filled in a burst also the minimizing
+         the non-filled portion of the buffer.
+       \item Add protocol support for FTP, HTTPS and session based downloads.
+       \item Right now we have support only for caching proxy. Support needs to give to more proxies.
+       \item Integrate megabolt with major browsers like Google chrome, Mozilla Firefox etc aby creating an addon to megabolt.
+       \item Code is ready for release in GPL to the community.
+       \end{itemize}
        
+       We had a really good learning experiend doing this project and also found many core papers like theory of computation, computer
+       networks and other core papers were really worth learning.
+       
+       \newpage
+       \section*{Bibliography}
+                {\bf [1] Fielding.et.al RFC 2616 HTTP}\\ \href{http://tools.ietf.org/html/rfc2616}\\
+                {\bf [2] RFC 959 FTP} \\ \href {http://tools.ietf.org/html/rfc959}\\
+                {\bf [3] The Open Group Base Specifications IEEE Std 1003.1}\\
+                {\bf [4] Qt Documentation}\\ \href{http://doc.qt.nokia.com/latest/}\\
+                
+                \addcontentsline{toc}{section}{Bibliography}
 \end{onehalfspace}
 \end{document}
