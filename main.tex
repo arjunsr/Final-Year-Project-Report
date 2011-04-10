@@ -310,5 +310,82 @@
       which will be discussed in next section is generic and extensible. Its really add support to another protocol class.
       \newpage
       \section{Project Modules and Description}
+       Download manager is a software that manages, schedules, accelerates and automate downloads. Its a widely software nowadays. However,
+       such an open, cross-platform with so much features are not available in the download managers currently available in the market.
+
+       Various modules included in the project are :
+       \begin{enumerate}
+       \item Front end : The front end includes scrollbars, stringlists, resizers, buttons, checkboxes, calendars and many widgets from
+         the Qt framework that helps to build the basic graphical user interface. Its description here is out of scope of the project
+         report.
+       \item Manager : Manager is the core module that instantiates all other modules in the download manager. Software once started
+         takes parameters from the operating system and initializes it configuration file directories. With configuration files it reads the
+         user preferences and settings.
+
+         Manager reads the list of download \emph{uri's} checks its status in the metadata. Object is passed to the backend if unfinished to
+         instantiate the protocol dependent download class. A download of an object is initialized by calling a \emph{start()} virtual
+         function.
+
+         Manager has the responsibility to check the scheduling information regarding a download object and call it timely. Manager
+         processes ``maximum concurrent number of downloads'' and the backend replies frequently updating its progress. This is shown
+         at the progress bar to give continous feed back to the user. The manager initializes the object with respect to the scheme entry
+         in their urls.
+
+       \item Back end : The back end is the core protocol specific part the does the task of downloading. All the data need the back end
+         is provided by the manager. Manager have only \emph{start()} and \emph{pause()} actions on the backend subsystems. The preliminary
+         model of the project has only implemented basic HTTP [RFC 2616] downloads.
+       \end{enumerate}
+       \newpage
+       \section{Specification and Design}
+       As the project is named as cross-platform download manager considerable effort was made to not to include non-portable code.
+       Unlike other download managers, megabolt downloads through various thread and writes it to the same file than downloading it into
+       parts and joining it in the future. That causes useless computation while joining the file and there is a need to have considerable
+       memory and disk space usage during the joining of the files. To avoid this we put a semaphore for writing to the files concerned.
+
+       Megabolt has following features:
+       \begin{itemize}
+       \item It is a free software. Free as in freedom.
+       \item It is cross platform. It works on majority of the popular OS like GNU/Linux, Apple's MAC OSX and M S Windows\ldots
+       \item It support threaded download support. As we all know a single TCP/IP connection for the transfer for a file is very
+         obselete and the connection cannot fully exploit the capacity of the transmission medium beyond a limits due to the threshold
+         limits with just one connection. To use the complete channel bandwidth we use multiple connections for a single file which
+         makes download faster and better.
+       \item Scheduled downloads are possible. Scheduling our job is one of the most important task.
+       \item HTTP following is implemented.
+       \item Pause resume support is implemented.
+       \item Provides mechanism to throttle the connection made for a file. If you want that the download you make shouldnt hog up
+         the network bandwidth beyond a particular limit you can configure it.
+       \item Simple graphical user interface design.
+       \end{itemize}
+
+       Beyond all, megabolt provides a abstract way of making download manager.
+
+       \subsection{Front end}
+       The data structures are generic that aids to write
+       extensible code to add more protocol support. For more details check the Figure: Class hierarchy\ref{fig:hier}
+
+       \begin{figure}[h!]
+         \includegraphics[scale=0.50]{pic/hier.png}
+         \caption{Class hierarchy \label{fig:hier}}
+       \end{figure}
+
+       Above diagram shows the main classes involved in the project. Now next figures shows you the methods and the control flow in the
+       classes.
+
+       \begin{figure}[h!]
+         \includegraphics[scale=0.90]{pic/methods.png}
+         \caption{Member functions of various classes \label{fig:methods}}
+       \end{figure}
+
+       \subsection{Backend}
+       Only HTTP downloads were implemented in the preliminary phase. The HTTP threads behave according to the following finite state
+       automaton\ref{fig:ts}
+
+       \begin{figure}[h!]
+        \includegraphics[scale=0.90]{pic/ts.png}
+         \caption{Finite State Automaton of a single thread \label{fig:ts}}
+       \end{figure}
+
+       
 \end{onehalfspace}
 \end{document}
