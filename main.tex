@@ -17,6 +17,7 @@
 \usepackage{fancyhdr}
 \usepackage{fixltx2e}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{parskip}
 \usepackage{bookmark}
 \usepackage{cite}
@@ -73,12 +74,12 @@
     \includegraphics[scale=0.75]{pic/cetemblem.jpg}\\
                     {\large \bf CERTIFICATE}\\[0.75cm]
   \end{center}
-      {\it This is to certify that this project entitled {\textsc MEGABOLT - A CROSS PLATFORM DOWNLOAD MANAGER} 
-        is a bonafide record of the project done by {\bf \emph{Arjun.S.R, Deepak Kumar.N.D, Joji Antony, Sreekanth B,}} 
-        and {\bf \emph{Varun V.V}} under our guidance \& supervision towards the partial fulfillment of the requirements 
-        for the award of the Degree of Bachelor of Technology in Computer Science and Engineering of the University of 
+      {\it This is to certify that this project entitled {\textsc MEGABOLT - A CROSS PLATFORM DOWNLOAD MANAGER}
+        is a bonafide record of the project done by {\bf \emph{Arjun.S.R, Deepak Kumar.N.D, Joji Antony, Sreekanth B,}}
+        and {\bf \emph{Varun V.V}} under our guidance \& supervision towards the partial fulfillment of the requirements
+        for the award of the Degree of Bachelor of Technology in Computer Science and Engineering of the University of
         Kerala during the year 2010-2011.}
-      
+
       \begin{minipage}{0.4\textwidth}
         \begin{flushleft}
           {
@@ -112,11 +113,11 @@
       We wish to place on record our deep sense of gratitude to our project guide, {\bf Mrs.Deepthi V R}, Lecturer, Department
       of Computer Science \& Engineering, College of Engineering, Trivandrum, for most valuable help and support in carrying out this
       preliminary project work and also for her concern shown during intricate situations.\\
-      
-      \indent We hereby express our sincere thanks to {\bf Mrs. Shreelekshmi R}, Head of the Department, Department of Computer 
+
+      \indent We hereby express our sincere thanks to {\bf Mrs. Shreelekshmi R}, Head of the Department, Department of Computer
       Science \& Engineering, College of Engineering, Trivandrum for all the necessary help extended during the course of the work.\\
-      
-      \indent We would also like to extend our sincere thanks to all staff members of the Department of Computer Science \& 
+
+      \indent We would also like to extend our sincere thanks to all staff members of the Department of Computer Science \&
       Engineering, College of Engineering, Trivandrum whose help has led to the completion of this report.\\[1cm]
       \begin{minipage}{0.4\textwidth}
         \begin{flushleft}
@@ -133,21 +134,23 @@
       \end{minipage}
       \vfill
       \newpage
-      
+
       \section*{\Large Abstract}
       \thispagestyle{plain}
       Megabolt is cross-platform download manger written in Qt Framework with many interesting features
       capable of professional use. Megabolt uses threaded downloaded on all the protocols it supports.
       The software is released in BSD licensed.\\
-      
+
       Our project was mainly intended to write portable code that runs light-weight processes on various
       platforms that Qt supports and provides a simple front-end to initiate, configure and use the software.
       Extra care was given in making the software configurable. The data structures are generic that supports
       almost all file transfer protocols available right now in the industry.
-      
-      
+
       \newpage
+      \begingroup
+      \hypersetup{linkcolor=blue}
       \tableofcontents
+      \endgroup
       \thispagestyle{empty}
       \newpage
       \listoffigures
@@ -236,6 +239,15 @@
       definition videos. And with 3G they started demanding blu-ray videos, HDTV live stream and so on. So the need to download data
       just increases the way the field of networking and multimedia advances.
 
+      Many internet service providers issues offer in free download time of the least traffic in their timezone. Some users find it really
+      difficult to exploit this chance as it is hard to change their routines to this free download time. So a mechanism to automate or
+      schedule download was noted.
+
+      Most of the servers today provide downloads through HTTP, FTP, HTTPS, session based download and cookie based download. A detailed
+      study of the HTTP[RFC 2616] and FTP [RFC 959] were made to implement it in the project. To cut it short and make the coding faster
+      we first implemented  HTTP downloads.
+
+      \subsection{Problem Definition}
       As we all know the popular operating systems include GNU/Linux, M S Windows, Apple's MAC etc\ldots. In each kernel the internal
       implementation of the networking application programming interface is entirely different. Though the networking API in linux is
       compatible with BSD socket interface. There are many internal issues that make it different from each other.
@@ -258,7 +270,7 @@
 
       Then we came across the extended grammar form of the language C++ that is called \emph{Qt}. Its a programming language.
       That is it when compiled produces a binary
-      \begin{itemize}
+      \begin{enumerate}
         \item That runs on the native operating system without any other interpreter. --efficiency.
         \item It gives precise control on the thread management facility offered by the system. --portability of threads
         \item It gives more neat code -- maintainability.
@@ -266,6 +278,37 @@
           --portability of networking API.
         \item It gives a intermediate layer that interface various graphical user interface libraries of operating systems
           to be compiled to the platform. --portability of gui code.
-      \end{itemize}
+      \end{enumerate}
+
+      \subsection{Summary of research}
+      The research on the field of application level protocols and other operating system internals helped us to make our design simple and
+      elegant. The software will provide the features described below :
+      The software is simple which initializes its parameters by its configuration file. Reads through the set of links to downloads stored
+      in pre-defined directory which contains details to its scheduling information, throttling information, thread status information and
+      details of the file to be download like destination directory etc\ldots
+
+      Design was very sophisticated that makes the backend completely independent with a layered architecture. Backend can function
+      independently as a command-line downloader like \emph{wget} however scheduling and other details have to be either hand coded to
+      the configuration files or as command-line arguments.
+
+      \subsubsection{Solution Overview}
+      Our portable download manager has only a single code that compiles in almost all major OS platforms. When compiled it link the
+      native GUI API calls to get things done. The code is compiled to the networking module of the native platform. Which makes it
+      whole new faster product. Also Qt 4 was re-written for make it faster and efficient as it was getting heavy.
+
+      The basic algorithm is like this, when the software is run ; it initializes it with predefined files that contain various directory
+      paths. The list of url's to be downloaded is read. The status is checked. If not completed the download object is initialized and
+      started by calling a virtual function \emph{start()} and it can be paused using \emph{pause()} function. The socket function within
+      these functions are non-blocking. Scheduling can be performed either list wise or individual file wise. If individual scheduling is
+      specified it overrides the list wise global scheduling information.
+
+      The main thread in the backend makes a timeout of 300milli second so as to write back the data it received till that slice to the
+      disc and it updates the thread status which makes the download pause resumable.
+
+      The software is released in GPLv3 which makes the code completely \emph{free} and open to contribute. If there is a way to provide
+      a good solution to layman's needs in software; it is to make the code \emph{free}. The data structures that are used in the project
+      which will be discussed in next section is generic and extensible. Its really add support to another protocol class.
+      \newpage
+      \section{Project Modules and Description}
 \end{onehalfspace}
 \end{document}
